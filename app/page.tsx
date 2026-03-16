@@ -21,18 +21,11 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-const scrollToSection = (id: string) => {
-  setIsMenuOpen(false)
-
-  const element = document.getElementById(id)
-
-  if (element) {
-    window.scrollTo({
-      top: element.offsetTop - 80,
-      behavior: "smooth"
-    })
+  const scrollToSection = (id: string) => {
+    setIsMenuOpen(false)
+    const element = document.getElementById(id)
+    element?.scrollIntoView({ behavior: 'smooth' })
   }
-}
 
   return (
     <div className="min-h-screen bg-white">
@@ -55,7 +48,7 @@ const scrollToSection = (id: string) => {
           </button>
 
           {/* Desktop Menu */}
-          <div className="flex justify-center animate-pop-in">
+          <div className="hidden md:flex gap-8 items-center">
             <button
               onClick={() => scrollToSection('home')}
               className="text-gray-700 hover:text-red-600 font-medium transition-colors"
@@ -130,7 +123,7 @@ const scrollToSection = (id: string) => {
         className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-gray-50 to-gray-100 relative overflow-hidden"
       >
         {/* Animated background circles */}
-        <div className="absolute top-20 -left-40 w-80 h-80 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float will-change-transform"></div>
+        <div className="absolute top-20 -left-40 w-80 h-80 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
         <div className="absolute -bottom-8 -right-40 w-80 h-80 bg-gray-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-red-50 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '4s' }}></div>
 
